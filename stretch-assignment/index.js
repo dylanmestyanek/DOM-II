@@ -30,7 +30,7 @@ blocks.forEach(block => block.addEventListener('click', () => {
         blocksContainer.style.transition = "all 0s";
         block.style.transform = `translateY(0px)`;
         blocksContainer.style.transform = `translateY(0px)`;
-    }, 500);
+    }, 250);
 }));
 
 blocks.forEach(block => block.addEventListener('mousedown', function(){
