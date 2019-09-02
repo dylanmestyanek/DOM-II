@@ -89,5 +89,5 @@ contentSection.addEventListener('click', function(){
 //the contentSection div will not turn orange, because of the e.stopPropagation();
 letsGoImg.addEventListener('click', function(e){
     e.stopPropagation();
-    this.style.display = "none";
+    this.style.display = "none"; 
 })
