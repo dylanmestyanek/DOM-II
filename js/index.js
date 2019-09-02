@@ -1,8 +1,11 @@
 let logoHeading = document.querySelector(".logo-heading");
 let nav = document.querySelector("nav");
+let navItems = nav.querySelectorAll('a');
 let welcomeTitle = document.querySelector('.intro h2');
 let welcomeText = document.querySelector('.intro p');
 let welcomeImg = document.querySelector('.intro img');
+let contentSection = document.querySelector('.content-section')
+let letsGoImg = document.querySelector('.img-content img');
 let count = 0;
 
 
@@ -73,4 +76,18 @@ window.addEventListener('pointerup', (e) => {
     document.body.style.background = "pink";
 })
 
+//Event.preventDefault() 
+navItems.forEach(item => item.addEventListener('click', (e) => e.preventDefault()));
 
+//Preventing event propagation
+//Turns background orange
+contentSection.addEventListener('click', function(){
+    this.style.background = "orange";
+});
+
+//Image is inside of the contentSection div, but when you click the image
+//the contentSection div will not turn orange, because of the e.stopPropagation();
+letsGoImg.addEventListener('click', function(e){
+    e.stopPropagation();
+    this.style.display = "none";
+})
