@@ -9,28 +9,26 @@ blocks.forEach(block => block.addEventListener('click', () => {
     clearTimeout(moveBoxDelay);
     mouseDown = false;
 
-    // Moves box to an "absolute" position, so it can float to the
-    // top of the container, without leaving an empty space from
-    // where it originally was. Also shifts the whole parent container
-    // down 120px to make space for the new box at the top
-    block.style.transform = `translateY(-${120}px)`;
-    blocksContainer.style.transform = `translateY(120px)`;
-    block.style.position = "absolute";
-    block.style.transition = "all .3s";
-    blocksContainer.style.transition = "all .3s";
+    // Floats box to the top of the stack and 
+    // shifts entire container down 124px to make room for box
+    // that is floating to the top of stack
+    blocksContainer.style.transform = `translateY(124px)`; 
+    blocksContainer.style.transition = "all 1s";
+    TweenMax.to(block, 0.75, {
+        y: -block.offsetTop - 110,
+    });
     
-    // Prepends the box to the beginning of the container
-    // and returns it's position to static, to put it back
-    // in the flow of all the other boxes. Also shifts the 
-    // whole parent container back to it's original spot
+    // After 750 miliseconds, return box to original y coordinate
+    // location, and prepend it to the beginning of the stack and 
+    // places parent container back at original position
     setTimeout(() => {
-        block.style.position = "static";
         blocksContainer.prepend(block);
-        block.style.transition = "all 0s";
-        blocksContainer.style.transition = "all 0s";
-        block.style.transform = `translateY(0px)`;
-        blocksContainer.style.transform = `translateY(0px)`;
-    }, 250);
+        blocksContainer.style.transform = `translateY(0px)`; 
+        blocksContainer.style.transition = `all 0s`; 
+        TweenMax.to(block, 0, {
+            y: 0,
+        }); 
+    }, 750);
 }));
 
 blocks.forEach(block => block.addEventListener('mousedown', function(){
@@ -52,3 +50,7 @@ blocks.forEach(block => block.addEventListener('mousedown', function(){
 }));
 
 window.addEventListener('mouseup', () => mouseDown = false);
+
+
+
+  
